@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ team.name }}
+<form method="POST" action="{{ url_for('update',i=team.id)}}">
+     {{ form.hidden_tag() }}
+     {{ form.submit() }}
+</form>
+</h1>
+{% for poke in pokemon %}
+      <img src='{{ poke.imgURL }}' ><br>
+      <strong>{{ poke.name.upper() }}</strong>
+      </br>
+      <strong>Ability: {{ poke.ability.upper() }}</strong><br>
+      <strong>Trait: {{ poke.sprite.upper() }}</strong>
+    <br><br>
+{% endfor %}
+
+
+{% endblock %}
+
+{% block content2 %}
+<div>
+{% for m in get_flashed_messages() %}
+{{ m }} <br>
+{% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %} <center><em>{{team.name}}</center></em> {% endblock %}

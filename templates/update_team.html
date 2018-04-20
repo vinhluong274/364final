@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Update Team</h2>
+
+<form method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.picks.label }} {{ form.picks() }}
+  {{ form.submit.label }}{{ form.submit() }}
+</form>
+
+{% endblock %}
+
+{% block content2 %}
+<div>
+{% for m in get_flashed_messages() %}
+{{ m }} <br>
+{% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %} <center><em>update team</center></em> {% endblock %}

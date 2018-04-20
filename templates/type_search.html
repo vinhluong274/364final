@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Search Pokemon by Type!</h2>
+<h4>Enter a pokemon type into the search box below and you'll encounter 3 random pokemon that that type! (ex. inputs: 'ground', 'flying', 'electric')</h4>
+<h4>**May take up to 10 seconds to find Pokemon in the grass**</h4>
+<form action="{{ url_for('search_results') }}" method="GET">
+  {{ form.hidden_tag() }}
+  {{ form.type.label() }} {{ form.type() }}
+  {{ form.submit() }}
+</form>
+{% endblock %}
+
+{% block content2 %}
+<div>
+{% for m in get_flashed_messages() %}
+{{ m }} <br>
+{% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %} <center><em>type search</center></em> {% endblock %}

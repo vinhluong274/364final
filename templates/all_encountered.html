@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>All Encountered Pokemon</h2>
+
+{% if pokemon %}
+<form method="POST">
+  {{ form.hidden_tag() }}
+	{{ form.filter.label }} {{ form.filter() }}
+  {{ form.submit() }}
+</form>
+
+<p><strong>So far, you've encountered these Pokemon: </strong></p>
+  {% for p in pokemon %}
+  <img src="{{ p.imgURL }}" alt=""> <p>"{{ p.name.upper() }}" -- <em> Ability: {{ p.ability.upper() }}</em> -- <em> Trait: {{ p.sprite.upper() }}</em></p>
+  {% endfor %}
+{% else %}
+  <p>You haven't encountered any pokemon yet!</p>
+{% endif %}
+
+{% endblock %}
+
+{% block content2 %}
+<div>
+{% for m in get_flashed_messages() %}
+{{ m }} <br>
+{% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %} <center><em>all ecounters</center></em> {% endblock %}

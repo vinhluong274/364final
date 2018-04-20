@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Search Results!</h2>
+
+{% if pokemon %}
+<p><strong>You encountered these {{ type }} Pokemon: </strong></p>
+  {% for p in pokemon %}
+  <img src="{{ p.imgURL }}" alt=""> <p>"{{ p.name.upper() }}" -- <em> Ability: {{ p.ability.upper() }}</em> -- <em> Trait: {{ p.sprite.upper() }}</em></p>
+  {% endfor %}
+{% else %}
+  <p>There were no Pokemon found of that type! Make sure the type is one of 18 valid types</p>
+{% endif %}
+
+{% endblock %}
+
+{% block content2 %}
+<div>
+{% for m in get_flashed_messages() %}
+<strong>***{{ m }}***</strong> <br>
+{% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %} <center><em>type results</center></em> {% endblock %}

@@ -1,0 +1,27 @@
+<h1>Pokemon Desktop!</h1>
+<ul>
+{% if current_user.is_authenticated %}
+  <p>Welcome, {{ current_user.name }}</p> <img height="50" width="50" src="{{ current_user.avatar }}" />
+  <li><a href="{{ url_for('logout') }}">Log out</a></li>
+{% else %}
+    <li><a href="{{ url_for('login') }}">Log in</a></li>
+{% endif %}
+    <li><a href="{{ url_for('index')}}">Home: Encounter Pokemon!</a></li>
+    <li><a href="{{ url_for('all_encountered')}}">Encountered Pokemon</a></li>
+    <li><a href="{{ url_for('create_team')}}">Create a Team</a></li>
+    <li><a href="{{ url_for('teams')}}">My Teams</a></li>
+    <li><a href="{{ url_for('type_search')}}">Search by Type</a></li>
+    <li><a href="{{ url_for('search_history')}}">Search History</a></li>
+</ul>
+
+{% block content %}
+
+{% endblock %}
+
+{% block content2 %}
+{% endblock %}
+<hr>
+<p><em>Hope you enjoy this app -- vinhbl@umich.edu -- 2018</em></p>
+
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Enter tall grass to encounter Pokemon!</h2>
+<form action="{{ url_for('index') }}" method="POST">
+  {{ form.hidden_tag() }}
+  {{ form.submit() }}
+</form>
+
+{% if img_url %}
+<img src="{{ img_url }}" alt="pokemon"><br>
+{% endif %}
+{% endblock %}
+
+{% block content2 %}
+<div>
+{% for m in get_flashed_messages() %}
+{{ m }} <br>
+{% endfor %}
+
+{% if img_url %}
+<a href="{{ url_for('create_team') }}">Add {{ name }} to one of your teams!</a>
+{% endif %}
+
+<br><button onClick="runAJAX()">Quick List of All Encountered Pokemon Names</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+function runAJAX () {
+	$.ajax({
+	  url: "/ajax",
+		dataType: "json"
+	}).done(function( data ) {
+			$.each(data.pokemon, function(index, value) {
+	    $("<p>"+ value.name + "</p>").appendTo($('div'))
+			});
+	  });
+	}
+
+</script>
+
+</div>
+{% endblock %}
+
+{% block footer %} <center><em>homepage</center></em> {% endblock %}

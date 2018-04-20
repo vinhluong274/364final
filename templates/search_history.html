@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Your Past Searches</h1>
+  <ul>
+  {% for s in searches %}
+    <li><a href="/specific_search/{{ s.term }}">{{ s.term }}</a> (Click all encounters from this search so far!)</li><br>
+  {% endfor %}
+  </ul>
+
+{% if not searches %}
+  <h3>You have not searched anything!</h3>
+{% endif %}
+
+{% endblock %}
+
+{% block content2 %}
+<div>
+{% for m in get_flashed_messages() %}
+{{ m }} <br>
+{% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %} <center><em>search history</center></em> {% endblock %}

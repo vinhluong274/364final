@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>All Encountered For "{{ term }}"</h2>
+
+{% if pokemon %}
+<p><strong>So far, you've encountered these Pokemon: </strong></p>
+  {% for p in pokemon %}
+  <img src="{{ p.imgURL }}" alt=""> <p>"{{ p.name.upper() }}" -- <em> Ability: {{ p.ability.upper() }}</em> -- <em> Trait: {{ p.sprite.upper() }}</em></p>
+  {% endfor %}
+{% else %}
+  <p>You haven't encountered any pokemon for this search yet!</p>
+{% endif %}
+
+{% endblock %}
+
+{% block content2 %}
+<div>
+{% for m in get_flashed_messages() %}
+{{ m }} <br>
+{% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %} <center><em>specific search encounters</center></em> {% endblock %}

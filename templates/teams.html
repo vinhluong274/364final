@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Your Teams</h1>
+  <ul>
+  {% for team in teams %}
+      <li><h4><a href="http://localhost:5000/single_team/{{ team.id }}">{{ team.name }}</a>
+      <form method="POST" action="{{ url_for('delete',team_id=team.id)}}">
+      	   {{ form.hidden_tag() }}
+           {{ form.submit() }}
+      </form></h4>
+    </li>
+  {% endfor %}
+  </ul>
+
+{% if not teams %}
+  <h3>You currently have no teams!</h3>
+{% endif %}
+
+{% endblock %}
+
+{% block content2 %}
+<div>
+{% for m in get_flashed_messages() %}
+{{ m }} <br>
+{% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %} <center><em>teams</center></em> {% endblock %}
