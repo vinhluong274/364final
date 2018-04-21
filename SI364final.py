@@ -80,7 +80,7 @@ migrate = Migrate(app, db)
 manager.add_command('db', MigrateCommand)
 
 def make_shell_context():
-    return dict( app=app, db=db, Song=Song, Artist=Artist, Album=Album)
+    return dict(app=app, db=db, Pokemon=Pokemon, User=User, SearchTerm=SearchTerm, PersonalTeam=PersonalTeam)
 # Add function use to manager
 manager.add_command("shell", Shell(make_context=make_shell_context))
 
