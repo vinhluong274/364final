@@ -68,7 +68,7 @@ app = Flask(__name__)
 app.debug = True
 app.use_reloader = True
 app.config['SECRET_KEY'] = 'hardtoguessstring'
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL') or "postgresql://localhost/364FinalProjectVINHBL" 
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL') or "postgresql://localhost/364FinalProjectVINHBL"
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['HEROKU_ON'] = os.environ.get('HEROKU')
@@ -78,6 +78,11 @@ manager = Manager(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 manager.add_command('db', MigrateCommand)
+
+def make_shell_context():
+    return dict( app=app, db=db, Song=Song, Artist=Artist, Album=Album)
+# Add function use to manager
+manager.add_command("shell", Shell(make_context=make_shell_context))
 
 # Login configurations setup
 login_manager = LoginManager()
